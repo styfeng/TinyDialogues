@@ -1,2 +1,4 @@
+[Read the Paper on arXiv](https://arxiv.org/abs/your_arxiv_link_here)
+
 # TinyDialogues
-Code &amp; data for the EMNLP 2024 paper: Is Child-Directed Speech Effective Training Data for Language Models?
+This repository contains the code and data for the paper "Is Child-Directed Speech Effective Training Data for Language Models?" by Steven Y. Feng, Noah D. Goodman, and Michael C. Frank.
