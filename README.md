@@ -3,4 +3,8 @@ This repository contains the code and data for the paper "Is Child-Directed Spee
 
 [Read the Paper on arXiv](https://www.arxiv.org/abs/2408.03617)
 
-## Code and data will be released soon!
+## Data
+
+The TinyDialogues data can be found under 'Data/TinyDialogues'. 'final_training_data' subfolder contains the final train and val splits. 'individual_age_data' subfolder contains the examples broken down by age, with a 'full_with_metadata' subfolder which contains the full examples including input parameters (e.g. number of participants) and additional GPT-4 generated metadata per example such as descriptions of the setting and other participants in each conversation.
+
+## Remainder of the code and data will be released soon!
