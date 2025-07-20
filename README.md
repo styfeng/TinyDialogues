@@ -143,7 +143,9 @@ bash scripts/language_model_training/GPT2_CHILDES_4-GPUs_train.sh \
 ```
 
 > Note: you can change the number of GPUs to use by modifying the script accordingly.  
+
 > We set the `SAVE_TOTAL_LIMIT` argument to 2 to save space (hardcoded in the current script), but you can modify it accordingly to save more intermediate checkpoints (e.g., per epoch).
+
 > Please see our paper for more training details and hyperparameters.
 
 ### RoBERTa (Masked LM)
@@ -218,7 +220,7 @@ python babylm_eval_zorro.py \
 ```
 
 - `<encoder/decoder>` should be `"decoder"` for GPT-2, `"encoder"` for RoBERTa.
-- `<eval_format>`: `"zorro"`, `"zorro_dialogue-format-CHILDES_CHI"`, or `"zorro_dialogue-format-CHILDES_MOT"`. See our paper for more info.
+- `<eval_format>`: `"zorro"`, `"zorro_dialogue-format-CHILDES_CHI"`, `"zorro_dialogue-format-CHILDES_MOT"`, `zorro_dialogue-format-tinydialogue_Child`, or `zorro_dialogue-format-tinydialogue_Mom`. See our paper for more info.
 
 #### Evaluate multiple models:
 ```bash
