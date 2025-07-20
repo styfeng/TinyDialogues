@@ -18,7 +18,7 @@ This repository contains the code and data for the paper:
   - Each `.txt` file (for train/val) contains one example per line.
   - Each line must end with the token `<|endoftext|>`.
 
-### Repeated Buckets Setup for Curriculum Expts
+### Repeated Buckets Setup for Curriculum Experiments
 
 #### CHILDES:
 
@@ -128,9 +128,9 @@ Our script `run_clm_no_shuffling.py` is a modified version of HuggingFace’s `r
 #### Generic command:
 ```bash
 bash scripts/language_model_training/GPT2_CHILDES_4-GPUs_train.sh \
-  {train_file} {val_file} {tokenizer_folder} \
-  tokenizers/GPT2-small_config {model_output_path} \
-  gpt2 {lr} {epochs} {batch_size} {seed}
+  <train_file> <val_file> <tokenizer_folder> \
+  tokenizers/GPT2-small_config <model_output_path> \
+  gpt2 <lr> <epochs> <batch_size> <seed>
 ```
 
 #### Example:
@@ -143,7 +143,7 @@ bash scripts/language_model_training/GPT2_CHILDES_4-GPUs_train.sh \
 ```
 
 > Note: you can change the number of GPUs to use by modifying the script accordingly.  
-> We usually set `{SAVE_TOTAL_LIMIT}` to 2 to save space (hardcoded), but you can modify it to save intermediate checkpoints (e.g., per epoch).
+> We set the `SAVE_TOTAL_LIMIT` argument to 2 to save space (hardcoded in the current script), but you can modify it accordingly to save more intermediate checkpoints (e.g., per epoch).
 > Please see our paper for more training details and hyperparameters.
 
 ### RoBERTa (Masked LM)
@@ -213,12 +213,12 @@ If accelerate causes conflicts with lmeval, replace: `"accelerate@git+..."` with
 #### Evaluation command:
 ```bash
 python babylm_eval_zorro.py \
-  {path_to_model} {encoder/decoder} {eval_format} \
-  {results_txt} {final_avg_csv} {results_csv} {results_jsonl}
+  <path_to_model> <ncoder/decoder> <eval_format> \
+  <results_txt> <final_avg_csv> <results_csv> <results_jsonl>
 ```
 
-- `{encoder/decoder}` should be `"decoder"` for GPT-2, `"encoder"` for RoBERTa.
-- `{eval_format}`: `"zorro"`, `"zorro_dialogue-format-CHILDES_CHI"`, or `"zorro_dialogue-format-CHILDES_MOT"`. See our paper for more info.
+- `<encoder/decoder>` should be `"decoder"` for GPT-2, `"encoder"` for RoBERTa.
+- `<eval_format>`: `"zorro"`, `"zorro_dialogue-format-CHILDES_CHI"`, or `"zorro_dialogue-format-CHILDES_MOT"`. See our paper for more info.
 
 #### Evaluate multiple models:
 ```bash
