@@ -1,6 +1,7 @@
 # TinyDialogues
 
 This repository contains the code and data for the paper:
+
 **[Is Child-Directed Speech Effective Training Data for Language Models?](https://aclanthology.org/2024.emnlp-main.1231/)**  
 
 Authors: Steven Y. Feng, Noah D. Goodman, Michael C. Frank from Stanford University.
@@ -23,15 +24,6 @@ Please contact syfeng@stanford.edu if you have any questions.
 
 - Pretrained tokenizers (for each dataset) can be found under the `tokenizers/` folder.
 - Default GPT-2-small and RoBERTa-base model configs can also be found there.
-
-### Tokenizer Training
-
-```bash
-python scripts/tokenizers/train_GPT2_tokenizer.py <train_file> <val_file> <output_folder>
-python scripts/tokenizers/test_GPT2_tokenizer.py <output_folder>
-```
-
-> Note: do this for every unique dataset that you want to train a model on. Then, make sure to use that tokenizer while training that model on that particular dataset.
 
 ---
 
@@ -98,6 +90,15 @@ If you encounter this error when training GPT-2: `TypeError: TextConfig.__init__
 ---
 
 ## 🧪 Model Training
+
+### First Step: Tokenizer Training
+
+```bash
+python scripts/tokenizers/train_GPT2_tokenizer.py <train_file> <val_file> <output_folder>
+python scripts/tokenizers/test_GPT2_tokenizer.py <output_folder>
+```
+
+> Note: do this for every unique dataset that you want to train a model on. Then, make sure to use that tokenizer while training that model on that particular dataset. We also include some pretrained tokenizers in the `tokenizers/` folder.
 
 ### GPT-2 (Causal LM)
 
@@ -173,10 +174,6 @@ pip install promptsource==0.2.3
 pip install numpy==1.24.2
 ```
 
-#### Optional: Fixes
-
-If accelerate causes conflicts with lmeval, replace: `"accelerate@git+..."` with `"accelerate==0.12.0"` in `setup.py`.
-
 #### Optional: CUDA compatibility fix
 ```bash
 pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
@@ -187,6 +184,10 @@ pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f 
 chmod u+x finetune_all_tasks.sh
 chmod u+x finetune_model.sh
 ```
+
+#### Optional: Other Fixes
+
+If accelerate causes conflicts with lmeval, replace: `"accelerate@git+..."` with `"accelerate==0.12.0"` in `setup.py`.
 
 #### Evaluation command:
 ```bash
@@ -209,7 +210,7 @@ Modify this script to iterate over lists of models and run evaluation automatica
 
 ### Word Relatedness Evaluation
 
-Based on [LexiContrastiveGrd](https://github.com/EvLab-MIT/LexiContrastiveGrd). Credits to Chengxu Zhuang and coauthors of [arXiv:2310.13257](https://arxiv.org/abs/2310.13257) and [arXiv:2403.14551](https://arxiv.org/abs/2403.14551)
+Based on [LexiContrastiveGrd](https://github.com/EvLab-MIT/LexiContrastiveGrd). Credits to Chengxu Zhuang and coauthors of [arXiv:2310.13257](https://arxiv.org/abs/2310.13257) and [arXiv:2403.14551](https://arxiv.org/abs/2403.14551).
 
 #### Setup:
 ```bash
@@ -249,9 +250,16 @@ If you use this codebase or dataset, please cite:
 
 ```bibtex
 @inproceedings{feng-etal-2024-child-directed,
-  title = "Is Child-Directed Speech Effective Training Data for Language Models?",
-  author = "Feng, Steven Y.  and Goodman, Noah D. and Frank, Michael C.",
-  booktitle = "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
-  year = "2024"
+	title = "Is Child-Directed Speech Effective Training Data for Language Models?",
+	author = "Feng, Steven Y. and Goodman, Noah D. and Frank, Michael C.",
+    editor = "Al-Onaizan, Yaser and Bansal, Mohit and Chen, Yun-Nung",
+	booktitle = "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
+	month = nov,
+	year = "2024",
+	address = "Miami, Florida, USA",
+	publisher = "Association for Computational Linguistics",
+	url = "https://aclanthology.org/2024.emnlp-main.1231/",
+	doi = "10.18653/v1/2024.emnlp-main.1231",
+	pages = "22055--22071"
 }
 ```
