@@ -18,6 +18,25 @@ This repository contains the code and data for the paper:
   - Each `.txt` file (for train/val) contains one example per line.
   - Each line must end with the token `<|endoftext|>`.
 
+### Repeated Buckets Setup for Curriculum Expts
+
+#### CHILDES:
+
+```bash
+python scripts/repeated_buckets/childes_repeated_buckets_setup.py \
+  <CHILDES_train_txt_file> <num_buckets> <repeats_per_bucket>
+```
+
+This splits the given [CHILDES data](https://github.com/styfeng/TinyDialogues/blob/main/data/CHILDES_data.zip) file into <num_buckets> buckets, and repeats each one <repeats_per_bucket> times before moving onto the next bucket.
+
+#### TinyDialogues:
+```bash
+python scripts/repeated_buckets/TD_repeated_buckets_setup.py \
+  <train/val> <repeats_per_bucket>
+```
+
+This uses the TD individual age data files (found [here](https://huggingface.co/datasets/styfeng/TinyDialogues/blob/main/individual_age_data.zip)) as buckets and repeats each one <repeats_per_bucket> times before moving onto the next bucket.
+
 ---
 
 ## 🧠 Model Configs & Tokenizers
