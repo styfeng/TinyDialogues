@@ -4,9 +4,9 @@ This repository contains the code and data for the paper:
 
 **[Is Child-Directed Speech Effective Training Data for Language Models?](https://aclanthology.org/2024.emnlp-main.1231/)**  
 
-Authors: Steven Y. Feng, Noah D. Goodman, Michael C. Frank from Stanford University.
+**Authors:** Steven Y. Feng, Noah D. Goodman, and Michael C. Frank (Stanford University).
 
-Please contact syfeng@stanford.edu if you have any questions.
+> Please contact syfeng@stanford.edu if you have any questions.
 
 ---
 
@@ -252,7 +252,7 @@ If you use this codebase or dataset, please cite:
 @inproceedings{feng-etal-2024-child-directed,
 	title = "Is Child-Directed Speech Effective Training Data for Language Models?",
 	author = "Feng, Steven Y. and Goodman, Noah D. and Frank, Michael C.",
-    editor = "Al-Onaizan, Yaser and Bansal, Mohit and Chen, Yun-Nung",
+	editor = "Al-Onaizan, Yaser and Bansal, Mohit and Chen, Yun-Nung",
 	booktitle = "Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP)",
 	month = nov,
 	year = "2024",
