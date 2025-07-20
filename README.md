@@ -1,7 +1,8 @@
 # TinyDialogues
 
-This repository contains the code and data for the paper:  
+This repository contains the code and data for the paper:
 **[Is Child-Directed Speech Effective Training Data for Language Models?](https://aclanthology.org/2024.emnlp-main.1231/)**  
+
 Authors: Steven Y. Feng, Noah D. Goodman, Michael C. Frank from Stanford University.
 
 Please contact syfeng@stanford.edu if you have any questions.
@@ -15,14 +16,13 @@ Please contact syfeng@stanford.edu if you have any questions.
 - **Expected format**:
   - Each `.txt` file (for train/val) contains one example per line.
   - Each line must end with the token `<|endoftext|>`.
-  - See the `data/` folder for examples.
 
 ---
 
 ## 🧠 Model Configs & Tokenizers
 
-- Tokenizer and model config files are under the `tokenizers/` folder.
-- GPT-2-small and RoBERTa-base configurations are provided for each dataset.
+- Pretrained tokenizers (for each dataset) can be found under the `tokenizers/` folder.
+- Default GPT-2-small and RoBERTa-base model configs can also be found there.
 
 ### Tokenizer Training
 
@@ -31,7 +31,7 @@ python scripts/tokenizers/train_GPT2_tokenizer.py <train_file> <val_file> <outpu
 python scripts/tokenizers/test_GPT2_tokenizer.py <output_folder>
 ```
 
-> Note: do this for every unique dataset that you want to train a model on, and then make sure to use that trained tokenizer while training the corresponding model on that dataset.
+> Note: do this for every unique dataset that you want to train a model on. Then, make sure to use that tokenizer while training that model on that particular dataset.
 
 ---
 
@@ -60,7 +60,7 @@ pip install accelerate tokenizers nltk
 pip install numpy==1.24.2
 ```
 
-### Verify installation
+#### Optional: Verify installation
 ```bash
 python -c "import torch; print(torch.__version__)"
 python -c "import transformers; print(transformers.__version__)"
@@ -70,7 +70,7 @@ nvcc --version
 dpkg -l | grep libnccl
 ```
 
-### Optional: GPU test script
+#### Optional: GPU test script
 ```python
 import torch
 print(torch.__version__)
@@ -80,17 +80,19 @@ print(torch.cuda.device_count())
 print(torch.cuda.get_device_name(0))
 ```
 
-### CUDA compatibility fix:
+#### Optional: CUDA compatibility fix
 
-```pip install torch==2.1.2+cu121 torchvision==0.16.2+cu121 torchaudio==2.1.2+cu121 --extra-index-url https://download.pytorch.org/whl/cu121
+```bash
+pip install torch==2.1.2+cu121 torchvision==0.16.2+cu121 torchaudio==2.1.2+cu121 --extra-index-url https://download.pytorch.org/whl/cu121
 ```
 
-### NCCL multi-GPU training fixes:
+#### Optional: NCCL multi-GPU training fix
 
-```sudo apt-get install libnccl2=2.18.3-1+cuda12.1 libnccl-dev=2.18.3-1+cuda12.1
+```bash
+sudo apt-get install libnccl2=2.18.3-1+cuda12.1 libnccl-dev=2.18.3-1+cuda12.1
 ```
 
-### Other fixes:
+#### Optional: Other fixes
 If you encounter this error when training GPT-2: `TypeError: TextConfig.__init__() got an unexpected keyword argument 'use_auth_token'`, comment out all lines that include `use_auth_token` in `run_clm_no_shuffling.py`.
 	
 ---
@@ -120,8 +122,11 @@ bash scripts/language_model_training/GPT2_CHILDES_4-GPUs_train.sh \
 
 > Note: you can change the number of GPUs to use by modifying the script accordingly.  
 > We usually set `{SAVE_TOTAL_LIMIT}` to 2 to save space (hardcoded), but you can modify it to save intermediate checkpoints (e.g., per epoch).
+> Please see our paper for more details and hyperparameters.
 
 ### RoBERTa (Masked LM)
+
+#### Generic command:
 
 ```bash
 python scripts/language_model_training/train_roberta_directly_seed.py \
@@ -168,16 +173,16 @@ pip install promptsource==0.2.3
 pip install numpy==1.24.2
 ```
 
-#### Fixes:
+#### Optional: Fixes
 
 If accelerate causes conflicts with lmeval, replace: `"accelerate@git+..."` with `"accelerate==0.12.0"` in `setup.py`.
 
-#### CUDA compatibility fix:
+#### Optional: CUDA compatibility fix
 ```bash
 pip install torch==1.10.1+cu111 torchvision==0.11.2+cu111 torchaudio==0.10.1 -f https://download.pytorch.org/whl/cu111/torch_stable.html
 ```
 
-Make evaluation scripts executable:
+#### Optional: Make evaluation scripts executable
 ```bash
 chmod u+x finetune_all_tasks.sh
 chmod u+x finetune_model.sh
@@ -191,14 +196,14 @@ python babylm_eval_zorro.py \
 ```
 
 - `{encoder/decoder}` should be `"decoder"` for GPT-2, `"encoder"` for RoBERTa.
-- `{eval_format}`: `"zorro"`, `"zorro_dialogue-format-CHILDES_CHI"`, or `"zorro_dialogue-format-CHILDES_MOT"`
+- `{eval_format}`: `"zorro"`, `"zorro_dialogue-format-CHILDES_CHI"`, or `"zorro_dialogue-format-CHILDES_MOT"`. See our paper for more info.
 
 #### Evaluate multiple models:
 ```bash
 bash scripts/evaluation/zorro_eval_script.sh
 ```
 
-Modify this script to iterate over a list of models and run evaluation automatically.
+Modify this script to iterate over lists of models and run evaluation automatically.
 
 ---
 
@@ -232,11 +237,9 @@ python eval_word_sim.py \
 bash scripts/evaluation/word-relatedness_eval_script.sh
 ```
 
-Modify the script to include lists of models to iterate over.
+Modify this script to iterate over lists of models and run evaluation automatically.
 
-> NOTE: To re-run evaluation on the same model, delete the corresponding `.pkl` files in  
-`LexiContrastiveGrd/src/llm_devo/word_sim/llm_devo_word_sim_results/human_sim/miniBERTa`  
-or rename the folder to avoid `RuntimeWarning: Mean of empty slice.` errors.
+> Note: To re-run evaluation on the same model, delete the corresponding `.pkl` files in `LexiContrastiveGrd/src/llm_devo/word_sim/llm_devo_word_sim_results/human_sim/miniBERTa` or rename the folder to avoid `RuntimeWarning: Mean of empty slice.` errors.
 
 ---
 
