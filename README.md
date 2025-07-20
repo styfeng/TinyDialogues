@@ -4,9 +4,9 @@ This repository contains the code and data for the paper:
 
 **[Is Child-Directed Speech Effective Training Data for Language Models?](https://aclanthology.org/2024.emnlp-main.1231/)**  
 
-**Authors:** Steven Y. Feng, Noah D. Goodman, and Michael C. Frank (Stanford University).
+**Authors:** [Steven Y. Feng](https://styfeng.github.io/), [Noah D. Goodman](https://cocolab.stanford.edu/ndg), and [Michael C. Frank](https://web.stanford.edu/~mcfrank/) (Stanford University).
 
-> Please contact syfeng@stanford.edu if you have any questions.
+> Please contact syfeng@stanford.edu if you have any questions or concerns.
 
 ---
 
@@ -98,7 +98,8 @@ python scripts/tokenizers/train_GPT2_tokenizer.py <train_file> <val_file> <outpu
 python scripts/tokenizers/test_GPT2_tokenizer.py <output_folder>
 ```
 
-> Note: do this for every unique dataset that you want to train a model on. Then, make sure to use that tokenizer while training that model on that particular dataset. We also include some pretrained tokenizers in the `tokenizers/` folder.
+> Note: do this for every unique dataset that you want to train a model on. Then, make sure to use that tokenizer while training that model on that particular dataset.
+> We also include some pretrained tokenizers in the `tokenizers/` folder.
 
 ### GPT-2 (Causal LM)
 
@@ -123,7 +124,7 @@ bash scripts/language_model_training/GPT2_CHILDES_4-GPUs_train.sh \
 
 > Note: you can change the number of GPUs to use by modifying the script accordingly.  
 > We usually set `{SAVE_TOTAL_LIMIT}` to 2 to save space (hardcoded), but you can modify it to save intermediate checkpoints (e.g., per epoch).
-> Please see our paper for more details and hyperparameters.
+> Please see our paper for more training details and hyperparameters.
 
 ### RoBERTa (Masked LM)
 
