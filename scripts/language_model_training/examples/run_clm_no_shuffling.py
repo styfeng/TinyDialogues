@@ -577,8 +577,7 @@ def main():
     with training_args.main_process_first(desc="grouping texts together"):
         if not data_args.streaming:
             lm_datasets = tokenized_datasets.map(
-                group_texts, #CHANGED BY STEVEN
-                #group_texts,
+                group_texts,
                 batched=True,
                 num_proc=data_args.preprocessing_num_workers,
                 load_from_cache_file=not data_args.overwrite_cache,
@@ -586,8 +585,7 @@ def main():
             )
         else:
             lm_datasets = tokenized_datasets.map(
-                group_texts, #CHANGED BY STEVEN
-                #group_texts,
+                group_texts,
                 batched=True,
             )
 
