@@ -212,6 +212,8 @@ chmod u+x finetune_model.sh
 
 If accelerate causes conflicts with lmeval, replace: `"accelerate@git+..."` with `"accelerate==0.12.0"` in `setup.py`.
 
+If you run into a `KeyError: 'null_prompt'` error in the PromptSource library while running Zorro, please replace the `promptsource` folder in your conda environment with the `promptsource` folder in this repo. For example, `/home/user/miniconda3/envs/babyLM_zorro/lib/python3.9/site-packages/promptsource`.
+
 #### Evaluation command:
 ```bash
 python babylm_eval_zorro.py \
