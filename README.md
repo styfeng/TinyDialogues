@@ -1,16 +1,15 @@
 # TinyDialogues
 
 This repository contains the code and data for the paper:
-
 **[Is Child-Directed Speech Effective Training Data for Language Models?](https://aclanthology.org/2024.emnlp-main.1231/)**  
 
 **Authors:** [Steven Y. Feng](https://styfeng.github.io/), [Noah D. Goodman](https://cocolab.stanford.edu/ndg), and [Michael C. Frank](https://web.stanford.edu/~mcfrank/) (Stanford University).
 
 > Please contact syfeng@stanford.edu if you have any questions or concerns.
 
----
+<details>
 
-## 📦 Data
+<summary>Data</summary>
 
 - **TinyDialogues Dataset** is hosted on HuggingFace: [styfeng/TinyDialogues](https://huggingface.co/datasets/styfeng/TinyDialogues)
 - Other datasets can be found under the `data/` folder (organized into `.zip` files).
@@ -18,9 +17,13 @@ This repository contains the code and data for the paper:
   - Each `.txt` file (for train/val) contains one example per line.
   - Each line must end with the token `<|endoftext|>`.
 
-### Repeated Buckets Setup for Curriculum Experiments
+</details>
 
-#### CHILDES:
+<details>
+	
+<summary>Repeated Buckets Setup for Curriculum Experiments</summary>
+
+### CHILDES:
 
 ```bash
 python scripts/repeated_buckets/childes_repeated_buckets_setup.py \
@@ -29,7 +32,7 @@ python scripts/repeated_buckets/childes_repeated_buckets_setup.py \
 
 This splits the given [CHILDES data](https://github.com/styfeng/TinyDialogues/blob/main/data/CHILDES_data.zip) file into `<num_buckets>` buckets, and repeats each one `<repeats_per_bucket>` times before moving onto the next bucket.
 
-#### TinyDialogues:
+### TinyDialogues:
 
 ```bash
 python scripts/repeated_buckets/TD_repeated_buckets_setup.py \
@@ -38,16 +41,20 @@ python scripts/repeated_buckets/TD_repeated_buckets_setup.py \
 
 This uses the TD individual age data files (found [here](https://huggingface.co/datasets/styfeng/TinyDialogues/blob/main/individual_age_data.zip)) as buckets (one bucket per age) and repeats each one `<repeats_per_bucket>` times before moving onto the next bucket.
 
----
+</details>
 
-## 🧠 Model Configs & Tokenizers
+<details>
+
+<summary>Model Configs & Tokenizers</summary>
 
 - Pretrained tokenizers (for each dataset) can be found under the `tokenizers/` folder.
 - Default GPT-2-small and RoBERTa-base model configs can also be found there.
 
----
+</details>
 
-## ⚙️ Environment Setup
+<details>
+
+<summary>Environment Setup</summary>
 
 ### Step 1: Install Miniconda (if needed)
 ```bash
@@ -106,10 +113,12 @@ sudo apt-get install libnccl2=2.18.3-1+cuda12.1 libnccl-dev=2.18.3-1+cuda12.1
 
 #### Optional: Other fixes
 If you encounter this error when training GPT-2: `TypeError: TextConfig.__init__() got an unexpected keyword argument 'use_auth_token'`, comment out all lines that include `use_auth_token` in `run_clm_no_shuffling.py`.
-	
----
 
-## 🧪 Model Training
+</details>
+
+<details>
+
+<summary>Model Training</summary>
 
 ### First Step: Tokenizer Training
 
@@ -173,9 +182,11 @@ python scripts/language_model_training/train_roberta_directly_seed.py \
   30000 512 no 5e-05 50 32 42
 ```
 
----
+</details>
 
-## 🧪 Evaluation
+<details>
+
+<summary>Evaluation</summary>
 
 ### Zorro Evaluation
 
@@ -267,9 +278,9 @@ Modify this script to iterate over lists of models and run evaluation automatica
 
 > Note: To re-run evaluation on the same model, delete the corresponding `.pkl` files in `LexiContrastiveGrd/src/llm_devo/word_sim/llm_devo_word_sim_results/human_sim/miniBERTa` or rename the folder to avoid `RuntimeWarning: Mean of empty slice.` errors.
 
----
+</details>
 
-## 📑 Citation
+## Citation
 
 If you use this codebase or dataset, please cite:
 
